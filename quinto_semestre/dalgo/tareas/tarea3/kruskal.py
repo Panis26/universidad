@@ -35,24 +35,38 @@ def get_key(dicc,val):
             return key
 
 def kruskal(graph):
+
     lenGraph = len(graph)
     visited = [False] * lenGraph
+
     menorCosto = []
     posibilidades = {}
     
     for i in range(lenGraph):
         for j in range(lenGraph):
             if graph[i][j] != 0:
-                posibilidades[i,j] = graph[i][j]
-   
-    while not nodosVisited(visited):
+                if (j,i) not in posibilidades:
+                    posibilidades[i,j] = graph[i][j]
+
+    allVisited = nodosVisited(visited)
+
+    while(not allVisited):
         menor = min(posibilidades.values())
-        nodo = get_key(posibilidades,menor)
-        menorCosto.
-        del posibilidades[nodo]
-        if visited[nodo[0]] == False or visited[nodo[1]] == False:
-            menorCosto.append(nodo)
-            visited[nodo[0]] = True
-            visited[nodo[1]] = True
-        for key in posibilidades:
-            
+        nodoOrigenMin,nodoDestinoMin = get_key(posibilidades,menor)
+        
+        del posibilidades[nodoOrigenMin,nodoDestinoMin]
+        menor = min(posibilidades.values())
+        nodoOrigenMin,nodoDestinoMin = get_key(posibilidades,menor)
+
+        menorCosto.append((nodoOrigenMin,nodoDestinoMin))
+        del posibilidades[nodoOrigenMin,nodoDestinoMin]
+
+        allVisited = nodosVisited(visited)
+
+    return menorCosto
+
+print(kruskal(graph1))
+
+
+
+        
