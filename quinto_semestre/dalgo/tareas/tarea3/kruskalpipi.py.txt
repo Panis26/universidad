@@ -1,0 +1,46 @@
+'''Algorirmo de kruskal en Matriz de adyacencia'''
+def kruskal_algo_matrix(matrix):
+
+    result = []
+
+    padres = {}
+
+    edges = []
+
+    def find(padres,vertex):
+        if padres[vertex] == vertex:
+            return vertex
+        else:
+            return find(padres,padres[vertex])
+
+    vertex = 0
+    for vertices in matrix:
+        weight_vertex = 0
+        padres[vertex] = vertex
+        for weight in vertices:
+            if weight != float('inf') and weight != 0:
+                edges.append((vertex,weight_vertex,weight))
+            weight_vertex += 1
+        vertex += 1
+    sorted_edges = sorted(edges, key=lambda x: x[2])
+    
+    total_weight = 0
+
+    for connection in sorted_edges:
+        padre_inicio = find(padres,connection[0])
+        padre_final = find(padres,connection[1])
+
+        if padre_inicio != padre_final:
+            result.append(connection)
+            padres[padre_final] = padre_inicio
+            total_weight += connection[2]
+    
+    return result, total_weight
+
+nueva_matriz = [[float('inf'),6,1,5,float('inf'),float('inf')],
+                [6,float('inf'),5,float('inf'),3,float('inf')],
+                [1,5,float('inf'),5,6,4],
+                [5,float('inf'),5,float('inf'),float('inf'),2],
+                [float('inf'),3,6,float('inf'),float('inf'),6],
+                [float('inf'),float('inf'),4,2,6,float('inf')]]
+print(kruskal_algo_matrix(nueva_matriz))

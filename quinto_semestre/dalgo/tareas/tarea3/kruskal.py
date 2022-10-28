@@ -1,4 +1,7 @@
 
+import random
+
+
 graph1 = [
         [0,1,0,5],
         [1,0,4,5],
@@ -50,23 +53,19 @@ def kruskal(graph):
 
     allVisited = nodosVisited(visited)
 
-    while(not allVisited):
+    while(len(posibilidades)>0 ):
         menor = min(posibilidades.values())
         nodoOrigenMin,nodoDestinoMin = get_key(posibilidades,menor)
         
         del posibilidades[nodoOrigenMin,nodoDestinoMin]
-        menor = min(posibilidades.values())
-        nodoOrigenMin,nodoDestinoMin = get_key(posibilidades,menor)
+        if len(posibilidades) > 0:
+            menor = min(posibilidades.values())
+            nodoOrigenMin,nodoDestinoMin = get_key(posibilidades,menor)
 
-        menorCosto.append((nodoOrigenMin,nodoDestinoMin))
-        del posibilidades[nodoOrigenMin,nodoDestinoMin]
+            menorCosto.append((nodoOrigenMin,nodoDestinoMin))
+            del posibilidades[nodoOrigenMin,nodoDestinoMin]
 
-        allVisited = nodosVisited(visited)
-
+            allVisited = nodosVisited(visited)
     return menorCosto
 
 print(kruskal(graph1))
-
-
-
-        
