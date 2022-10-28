@@ -1,4 +1,7 @@
 
+import random
+
+
 graph1 = [
         [0,1,0,5],
         [1,0,4,5],
@@ -50,7 +53,7 @@ def kruskal(graph):
 
     allVisited = nodosVisited(visited)
 
-    while(not allVisited):
+    while(len(posibilidades)>0 ):
         menor = min(posibilidades.values())
         nodoOrigenMin,nodoDestinoMin = get_key(posibilidades,menor)
         
@@ -65,8 +68,27 @@ def kruskal(graph):
 
     return menorCosto
 
-print(kruskal(graph1))
+#print(kruskal(graph1))
 
 
+def adjacent_matrix_to_bfs(graph):
+    lenGraph = len(graph)
+    visited = [False] * lenGraph
+    queue = []
+    bfs = []
+    nodoInicial = random.randint(0,lenGraph-1)
+    queue.append(nodoInicial)
+    visited[nodoInicial] = True
 
-        
+    while queue:
+        nodo = queue.pop(0)
+        bfs.append(nodo)
+        for i in range(lenGraph):
+            if graph[nodo][i] != 0:
+                if visited[i] == False:
+                    queue.append(i)
+                    visited[i] = True
+
+    return bfs
+
+print(adjacent_matrix_to_bfs(graph2))
