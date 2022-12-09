@@ -1,3 +1,7 @@
+#Santiago Andres Ramirez Ramirez - 201910908
+#Ana Sofia Padilla Daza - 202021748
+#Cristian Armando Sanchez Ocampo - 202022112
+
 import sys
 import time
  

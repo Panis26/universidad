@@ -44,7 +44,8 @@ def orden(lista):
         if alfabeto[vertice] == 0:
             vertices_sin_salida.append(vertice)
 
-    #Se le añaden los nodos faltantes a la lista y se ordena de forma topologica el grafo
+    #Se le añaden los nodos faltantes a la lista 
+    # y se ordena de forma topologica el grafo
     while vertices_sin_salida != []:
         ultimo = vertices_sin_salida[-1]
         orden += ultimo
